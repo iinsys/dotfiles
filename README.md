@@ -7,18 +7,15 @@ A collaborative, open source repository for DevOps environment configuration and
 [![Documentation](https://img.shields.io/badge/Documentation-GitHub%20Pages-blue)](https://iinsys.github.io/dotfiles/)
 [![GitHub Stars](https://img.shields.io/github/stars/iinsys/dotfiles?style=social)](https://github.com/iinsys/dotfiles)
 
-## 🎯 Project Goals
+## 📖 About
 
-- **Standardize DevOps Environments**: Provide consistent, reproducible setup for shells, editors, and tools across all team members and machines
-- **Automate Setup**: Enable fast onboarding and environment setup with scripts and instructions
-- **Share Best Practices**: Collect and share useful aliases, functions, and configurations for productivity and security
-- **Encourage Collaboration**: Make it easy for contributors to add improvements, new tool configs, and documentation
-- **Document Everything**: Clearly explain what each file/config does and how to use or customize it
+DevOps Dotfiles is a comprehensive collection of standardized environment configurations for DevOps engineers. It provides ready-to-use shell aliases, editor settings, Git configurations, and DevOps tool setups that boost productivity across Linux, macOS, and Windows environments. The project includes automated installation scripts, cross-platform compatibility, and extensive documentation to get teams productive quickly.
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - Git
+- Make ([Install Make](https://www.gnu.org/software/make/))
 - A Unix-like system (Linux, macOS, WSL)
 
 ### Installation Options
