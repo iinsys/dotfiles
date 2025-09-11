@@ -1,0 +1,121 @@
+# DevOps Nano Configuration
+# Practical settings for DevOps work
+
+# =============================================================================
+# BASIC SETTINGS
+# =============================================================================
+
+# Enable line numbers
+set linenumbers
+
+# Enable mouse support
+set mouse
+
+# Enable auto-indentation
+set autoindent
+
+# Enable smart home key
+set smarthome
+
+# Enable word wrapping
+set softwrap
+
+# Enable tab completion
+set tabstospaces
+set tabsize 4
+
+# Enable backup files
+set backup
+
+# Enable multiple buffers
+set multibuffer
+
+# Enable suspend
+set suspend
+
+# =============================================================================
+# SYNTAX HIGHLIGHTING
+# =============================================================================
+
+# Enable syntax highlighting
+syntax enable
+
+# Include common syntax files
+include /usr/share/nano/*.nanorc
+include /usr/local/share/nano/*.nanorc
+
+# =============================================================================
+# DEVOPS-SPECIFIC SYNTAX HIGHLIGHTING
+# =============================================================================
+
+# YAML files
+syntax "yaml" "\.ya?ml$"
+color brightwhite "^(---|\.\.\.)$"
+color brightblue "^\s*[a-zA-Z_][a-zA-Z0-9_]*:"
+color brightgreen "^\s*-"
+color brightyellow "\".*\""
+color brightred "'[^']*'"
+
+# Dockerfile
+syntax "dockerfile" "Dockerfile.*"
+color brightblue "^(FROM|RUN|CMD|ENTRYPOINT|WORKDIR|COPY|ADD|ENV|EXPOSE|VOLUME|USER|LABEL|ARG|ONBUILD|STOPSIGNAL|HEALTHCHECK|SHELL)"
+color brightgreen "^(#.*)$"
+color brightyellow "\".*\""
+color brightred "'[^']*'"
+
+# Terraform files
+syntax "terraform" "\.tf$"
+color brightblue "^(resource|data|provider|variable|output|module|terraform|locals|moved|import|removed|lifecycle|depends_on|count|for_each|source|version|backend|required_providers|required_version)"
+color brightgreen "^(#.*)$"
+color brightyellow "\".*\""
+color brightred "'[^']*'"
+
+# Kubernetes YAML
+syntax "k8s" "k8s-.*\.ya?ml$"
+color brightblue "^(apiVersion|kind|metadata|spec|status|name|namespace|labels|annotations|selector|template|containers|image|ports|env|resources|limits|requests)"
+color brightgreen "^(#.*)$"
+color brightyellow "\".*\""
+color brightred "'[^']*'"
+
+# =============================================================================
+# KEY BINDINGS
+# =============================================================================
+
+# Custom key bindings for DevOps work
+bind ^O savefile main
+bind ^X exit main
+bind ^R readfile main
+bind ^W writeout main
+bind ^K cut main
+bind ^U uncut main
+bind ^T execute main
+bind ^F whereis main
+bind ^G findnext main
+bind ^L refresh main
+bind ^Z suspend main
+
+# =============================================================================
+# COLOR SCHEME
+# =============================================================================
+
+# Set color scheme for better visibility
+set titlecolor brightwhite,blue
+set numbercolor brightyellow
+set statuscolor brightwhite,green
+set keycolor brightcyan
+set functioncolor brightgreen
+set numbercolor brightyellow
+set selectedcolor brightwhite,magenta
+set stripecolor ,yellow
+set titlecolor brightwhite,blue
+set keycolor brightcyan
+set functioncolor brightgreen
+set numbercolor brightyellow
+set selectedcolor brightwhite,magenta
+set stripecolor ,yellow
+set titlecolor brightwhite,blue
+set keycolor brightcyan
+set functioncolor brightgreen
+set numbercolor brightyellow
+set selectedcolor brightwhite,magenta
+set stripecolor ,yellow

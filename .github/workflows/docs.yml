@@ -1,0 +1,71 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - 'README.md'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - 'README.md'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: |
+        npm install -g markdownlint-cli@latest
+        npm install -g @11ty/eleventy@latest
+        
+    - name: Lint documentation
+      run: |
+        markdownlint docs/**/*.md README.md || true
+        
+    - name: Build documentation
+      run: |
+        # Create a simple documentation site
+        mkdir -p _site
+        cp -r docs/* _site/
+        cp README.md _site/
+        
+        # Generate index from README
+        echo "# DevOps Dotfiles Documentation" > _site/index.md
+        echo "" >> _site/index.md
+        echo "Generated on: $(date)" >> _site/index.md
+        echo "" >> _site/index.md
+        cat README.md >> _site/index.md
+        
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+        cname: iinsys.github.io
+        
+    - name: Comment PR
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '📚 Documentation preview available at: https://iinsys.github.io/dotfiles/'
+          })

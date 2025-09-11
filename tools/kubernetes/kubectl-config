@@ -1,0 +1,52 @@
+# Kubernetes Configuration Template
+# Common kubectl configurations and contexts
+
+# Example kubectl config for multiple clusters
+apiVersion: v1
+kind: Config
+clusters:
+- cluster:
+    server: https://kubernetes.default.svc.cluster.local
+    certificate-authority-data: LS0tLS1CRUdJTi...
+  name: dev-cluster
+- cluster:
+    server: https://staging-k8s.example.com
+    certificate-authority-data: LS0tLS1CRUdJTi...
+  name: staging-cluster
+- cluster:
+    server: https://prod-k8s.example.com
+    certificate-authority-data: LS0tLS1CRUdJTi...
+  name: prod-cluster
+
+contexts:
+- context:
+    cluster: dev-cluster
+    user: dev-user
+    namespace: default
+  name: dev-context
+- context:
+    cluster: staging-cluster
+    user: staging-user
+    namespace: staging
+  name: staging-context
+- context:
+    cluster: prod-cluster
+    user: prod-user
+    namespace: production
+  name: prod-context
+
+current-context: dev-context
+
+users:
+- name: dev-user
+  user:
+    client-certificate-data: LS0tLS1CRUdJTi...
+    client-key-data: LS0tLS1CRUdJTi...
+- name: staging-user
+  user:
+    client-certificate-data: LS0tLS1CRUdJTi...
+    client-key-data: LS0tLS1CRUdJTi...
+- name: prod-user
+  user:
+    client-certificate-data: LS0tLS1CRUdJTi...
+    client-key-data: LS0tLS1CRUdJTi...

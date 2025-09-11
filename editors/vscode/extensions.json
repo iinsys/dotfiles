@@ -1,0 +1,67 @@
+{
+  "recommendations": [
+    "// DevOps Essential Extensions",
+    "ms-vscode.vscode-docker",
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "hashicorp.terraform",
+    "redhat.vscode-yaml",
+    "ms-vscode.powershell",
+    "ms-python.python",
+    "golang.go",
+    "ms-vscode.vscode-json",
+    
+    "// Git and Version Control",
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github",
+    "github.copilot",
+    "github.copilot-chat",
+    
+    "// Shell and Terminal",
+    "ms-vscode.powershell",
+    "timonwong.shellcheck",
+    "foxundermoon.shell-format",
+    
+    "// Configuration Files",
+    "redhat.vscode-yaml",
+    "ms-vscode.vscode-json",
+    "ms-vscode.vscode-toml",
+    "tamasfe.even-better-toml",
+    
+    "// Cloud and Infrastructure",
+    "amazonwebservices.aws-toolkit-vscode",
+    "ms-azuretools.vscode-azureterraform",
+    "ms-azuretools.vscode-docker",
+    "googlecloudtools.cloudcode",
+    
+    "// Monitoring and Logs",
+    "ms-vscode.vscode-json",
+    "humao.rest-client",
+    "rangav.vscode-thunder-client",
+    
+    "// Productivity",
+    "ms-vscode.vscode-typescript-next",
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-eslint",
+    "ms-vscode.vscode-prettier",
+    
+    "// Documentation",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    "shd101wyy.markdown-preview-enhanced",
+    
+    "// Utilities",
+    "ms-vscode.vscode-json",
+    "ms-vscode.vscode-typescript-next",
+    "ms-vscode.vscode-eslint",
+    "ms-vscode.vscode-prettier",
+    "ms-vscode.vscode-json",
+    "ms-vscode.vscode-typescript-next",
+    "ms-vscode.vscode-eslint",
+    "ms-vscode.vscode-prettier"
+  ],
+  "unwantedRecommendations": [
+    "ms-vscode.vscode-typescript",
+    "ms-vscode.vscode-json"
+  ]
+}

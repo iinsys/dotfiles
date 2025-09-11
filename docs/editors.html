@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor Configurations - DevOps Dotfiles</title>
+    <style>
+        :root {
+            --primary-color: #326ce5;
+            --secondary-color: #64748b;
+            --background-color: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        .navbar {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .section h3 {
+            color: var(--text-color);
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        .code-block {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.5rem;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            white-space: pre-line;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .footer {
+            background: var(--text-color);
+            color: white;
+            padding: 3rem 0 1rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 1rem;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        .footer-bottom p {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>DevOps Dotfiles - Editor Configurations</h1>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shell.html">Shell</a>
+            <a href="git.html">Git</a>
+            <a href="tools.html">Tools</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <h2>Editor Configurations</h2>
+            <p>Pre-configured editors with themes, plugins, and productivity settings for Vim, Nano, and VS Code.</p>
+
+            <h3>Installation</h3>
+            <div class="code-block"># Install editor configurations
+make install-editors
+
+# Or manually
+./install.sh editors</div>
+
+            <h3>Supported Editors</h3>
+
+            <h3>Vim Configuration</h3>
+            <ul>
+                <li><strong>Theme:</strong> Dark theme with syntax highlighting</li>
+                <li><strong>Plugins:</strong> Vundle plugin manager setup</li>
+                <li><strong>Settings:</strong> Line numbers, auto-indent, search highlighting</li>
+                <li><strong>Key Mappings:</strong> Custom shortcuts for common tasks</li>
+            </ul>
+
+            <div class="code-block"># Sample Vim settings
+set number
+set autoindent
+set smartindent
+set hlsearch
+set incsearch
+set ruler
+set showcmd</div>
+
+            <h3>Nano Configuration</h3>
+            <ul>
+                <li><strong>Syntax Highlighting:</strong> Multiple language support</li>
+                <li><strong>Theme:</strong> Dark theme with color coding</li>
+                <li><strong>Settings:</strong> Auto-indent, mouse support, word wrapping</li>
+            </ul>
+
+            <div class="code-block"># Sample Nano settings
+set autoindent
+set mouse
+set softwrap
+set tabsize 4
+set wordwrap</div>
+
+            <h3>VS Code Configuration</h3>
+            <ul>
+                <li><strong>Settings:</strong> Optimized for DevOps workflows</li>
+                <li><strong>Extensions:</strong> Recommended extensions for development</li>
+                <li><strong>Themes:</strong> Dark theme with proper contrast</li>
+                <li><strong>Key Bindings:</strong> Custom shortcuts for productivity</li>
+            </ul>
+
+            <div class="code-block"># VS Code settings include:
+{
+  "editor.fontSize": 14,
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.wordWrap": "on",
+  "workbench.colorTheme": "Dark+ (default dark)"
+}</div>
+
+            <h3>Recommended Extensions</h3>
+            <ul>
+                <li><strong>Docker:</strong> Docker extension for container management</li>
+                <li><strong>Kubernetes:</strong> K8s extension for cluster management</li>
+                <li><strong>GitLens:</strong> Enhanced Git capabilities</li>
+                <li><strong>Terraform:</strong> Terraform syntax and validation</li>
+                <li><strong>YAML:</strong> YAML syntax highlighting and validation</li>
+            </ul>
+
+            <div>
+                <a href="https://github.com/iinsys/dotfiles/blob/main/editors/.vimrc" class="btn" target="_blank">View .vimrc</a>
+                <a href="https://github.com/iinsys/dotfiles/blob/main/editors/.nanorc" class="btn" target="_blank">View .nanorc</a>
+                <a href="https://github.com/iinsys/dotfiles/blob/main/editors/vscode/settings.json" class="btn" target="_blank">View VS Code Settings</a>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DevOps Dotfiles</h3>
+                    <p>Standardized DevOps environment configurations for maximum productivity.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#getting-started">Getting Started</a></li>
+                        <li><a href="index.html#components">Components</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#makefile">Makefile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Documentation</h4>
+                    <ul>
+                        <li><a href="shell.html">Shell Configurations</a></li>
+                        <li><a href="editors.html">Editor Configurations</a></li>
+                        <li><a href="git.html">Git Configurations</a></li>
+                        <li><a href="tools.html">DevOps Tools</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://github.com/iinsys/dotfiles" target="_blank">GitHub Repository</a></li>
+                        <li><a href="https://github.com/iinsys/dotfiles/issues" target="_blank">Report Issues</a></li>
+                        <li><a href="https://github.com/iinsys/dotfiles/blob/main/LICENSE" target="_blank">License</a></li>
+                        <li><a href="https://github.com/iinsys/dotfiles/blob/main/CONTRIBUTING.md" target="_blank">Contributing</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevOps Dotfiles. Built with ❤️ for the DevOps community.</p>
+                <p>Last updated: <span id="lastUpdated"></span></p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">↑</button>
+
+    <script>
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Update last updated date
+        document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString();
+    </script>
+</body>
+</html>
