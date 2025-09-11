@@ -21,21 +21,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '22'
-        cache: 'npm'
-        
-    - name: Install dependencies
-      run: |
-        npm install -g markdownlint-cli@latest
-        npm install -g @11ty/eleventy@latest
-        
-    - name: Lint documentation
-      run: |
-        markdownlint docs/**/*.md README.md || true
-        
     - name: Build documentation
       run: |
         # Create a simple documentation site
@@ -43,12 +28,12 @@ jobs:
         cp -r docs/* _site/
         cp README.md _site/
         
-        # Generate index from README
-        echo "# DevOps Dotfiles Documentation" > _site/index.md
-        echo "" >> _site/index.md
-        echo "Generated on: $(date)" >> _site/index.md
-        echo "" >> _site/index.md
-        cat README.md >> _site/index.md
+        # Add a simple documentation index
+        echo "# DevOps Dotfiles Documentation" > _site/README.md
+        echo "" >> _site/README.md
+        echo "Generated on: $(date)" >> _site/README.md
+        echo "" >> _site/README.md
+        cat README.md >> _site/README.md
         
     - name: Deploy to GitHub Pages
       if: github.ref == 'refs/heads/main'
