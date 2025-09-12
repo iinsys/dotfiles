@@ -128,24 +128,43 @@ autocmd FileType go setlocal tabstop=4 shiftwidth=4 noexpandtab
 " 
 " " Git integration
 " Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-rhubarb'
 " 
-" " File explorer
+" " File explorer and navigation
 " Plug 'scrooloose/nerdtree'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
 " 
-" " Syntax checking
+" " Syntax checking and linting
 " Plug 'vim-syntastic/syntastic'
+" Plug 'dense-analysis/ale'
 " 
-" " Auto-completion
+" " Auto-completion and snippets
 " Plug 'valloric/youcompleteme'
+" Plug 'sirver/ultisnips'
+" Plug 'honza/vim-snippets'
 " 
-" " Docker support
+" " Language support
 " Plug 'ekalinin/dockerfile.vim'
-" 
-" " Terraform support
 " Plug 'hashivim/vim-terraform'
-" 
-" " Kubernetes support
 " Plug 'andrewstuart/vim-kubernetes'
+" Plug 'fatih/vim-go'
+" Plug 'python-mode/python-mode'
+" Plug 'vim-python/python-syntax'
+" 
+" " Status line and UI
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'morhetz/gruvbox'
+" 
+" " Code formatting and utilities
+" Plug 'prettier/vim-prettier'
+" Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-repeat'
+" 
+" " Tmux integration
+" Plug 'christoomey/vim-tmux-navigator'
 " 
 " call plug#end()
 
@@ -176,6 +195,73 @@ function! FormatJSON()
     %!python -m json.tool
 endfunction
 
+" Function to run current Python file
+function! RunPythonFile()
+    if &filetype == 'python'
+        execute '!python %'
+    endif
+endfunction
+
+" Function to run current shell script
+function! RunShellScript()
+    if &filetype == 'sh' || &filetype == 'bash' || &filetype == 'zsh'
+        execute '!bash %'
+    endif
+endfunction
+
+" Function to generate ctags
+function! GenerateCtags()
+    execute '!ctags -R .'
+    echo "Ctags generated"
+endfunction
+
+" Function to open file under cursor
+function! OpenFileUnderCursor()
+    let filename = expand('<cfile>')
+    if filereadable(filename)
+        execute 'edit ' . filename
+    else
+        echo "File not found: " . filename
+    endif
+endfunction
+
+" Function to toggle between header and source files
+function! ToggleHeaderSource()
+    let filename = expand('%:t:r')
+    let extension = expand('%:e')
+    
+    if extension == 'h' || extension == 'hpp'
+        " Try to find corresponding .c or .cpp file
+        for ext in ['c', 'cpp', 'cc', 'cxx']
+            let candidate = filename . '.' . ext
+            if filereadable(candidate)
+                execute 'edit ' . candidate
+                return
+            endif
+        endfor
+    elseif extension == 'c' || extension == 'cpp' || extension == 'cc' || extension == 'cxx'
+        " Try to find corresponding .h or .hpp file
+        for ext in ['h', 'hpp']
+            let candidate = filename . '.' . ext
+            if filereadable(candidate)
+                execute 'edit ' . candidate
+                return
+            endif
+        endfor
+    endif
+    
+    echo "No corresponding file found"
+endfunction
+
+" Function to create a new file in the same directory
+function! CreateNewFile()
+    let dir = expand('%:p:h')
+    let filename = input('New filename: ', dir . '/')
+    if filename != ''
+        execute 'edit ' . filename
+    endif
+endfunction
+
 " =============================================================================
 " KEY MAPPINGS FOR FUNCTIONS
 " =============================================================================
@@ -183,6 +269,29 @@ endfunction
 nnoremap <leader>t :call ToggleTabSpaces()<CR>
 nnoremap <leader>w :call RemoveTrailingWhitespace()<CR>
 nnoremap <leader>j :call FormatJSON()<CR>
+nnoremap <leader>r :call RunPythonFile()<CR>
+nnoremap <leader>s :call RunShellScript()<CR>
+nnoremap <leader>g :call GenerateCtags()<CR>
+nnoremap <leader>f :call OpenFileUnderCursor()<CR>
+nnoremap <leader>h :call ToggleHeaderSource()<CR>
+nnoremap <leader>n :call CreateNewFile()<CR>
+
+" Advanced navigation
+nnoremap <leader>b :buffers<CR>
+nnoremap <leader>o :only<CR>
+nnoremap <leader>d :bdelete<CR>
+
+" Quick file operations
+nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>sp :split <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
+
+" Git operations (if fugitive is installed)
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gp :Gpush<CR>
+nnoremap <leader>gl :Glog<CR>
+nnoremap <leader>gd :Gdiff<CR>
 
 " =============================================================================
 " AUTOCOMMANDS

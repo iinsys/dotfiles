@@ -202,14 +202,62 @@
     <div class="container">
         <section class="section">
             <h2>DevOps Tools</h2>
-            <p>Comprehensive configurations for Docker, Kubernetes, Terraform, and AWS CLI with helpful aliases and functions.</p>
+            <p>Comprehensive configurations for Docker, Kubernetes, Terraform, tmux, ctags, and AWS CLI with helpful aliases and functions.</p>
 
             <h3>Installation</h3>
-            <div class="code-block"># Install DevOps tools configurations
+            <div class="code-block"># Install all DevOps tools configurations
 make install-tools
+
+# Install individual tools
+make install-tmux
+make install-ctags
 
 # Or manually
 ./install.sh tools</div>
+
+            <h3>tmux Configuration</h3>
+            <p>Advanced terminal multiplexer with enhanced navigation and session management:</p>
+
+            <div class="code-block"># Key Features
+- Prefix key: Ctrl-a (easier than default Ctrl-b)
+- Mouse support for modern workflows
+- Alt-arrow keys for pane navigation
+- Alt-number keys for window switching
+- Custom status bar with system info
+- Vi copy mode for efficient text selection
+
+# Key Bindings
+Ctrl-a |     # Split pane horizontally
+Ctrl-a -     # Split pane vertically
+Alt-arrow    # Navigate between panes
+Ctrl-arrow   # Resize panes
+Alt-1-9      # Switch to window 1-9
+Ctrl-a r     # Reload configuration
+
+# Usage Examples
+tmux                    # Start new session
+tmux new-session -s devops  # Start named session
+tmux attach -t devops   # Attach to existing session
+tmux list-sessions      # List all sessions</div>
+
+            <h3>ctags Configuration</h3>
+            <p>Enhanced code navigation and indexing for multiple programming languages:</p>
+
+            <div class="code-block"># Supported Languages
+- Python: Classes, functions, decorators
+- JavaScript/TypeScript: Functions, classes, variables
+- Go: Functions, types, variables, constants
+- Shell: Function definitions
+- Docker: Images, labels, environment variables
+- Terraform: Resources, data sources, variables
+- YAML/JSON: Key definitions
+
+# Usage Examples
+ctags -R .                    # Generate tags for current directory
+ctags -R --languages=Python . # Generate tags for specific language
+vim -t function_name          # Jump to function in Vim
+Ctrl-]                       # Jump to tag under cursor in Vim
+Ctrl-t                       # Return from tag in Vim</div>
 
             <h3>Docker Configuration</h3>
             <p>Docker aliases and functions for container management:</p>
@@ -289,6 +337,8 @@ awsprof() {
                 <li><strong>Docker:</strong> Dockerfile templates, docker-compose.yml, .dockerignore</li>
                 <li><strong>Kubernetes:</strong> kubectl config templates and context management</li>
                 <li><strong>Terraform:</strong> terraform.tfvars.example and workspace configurations</li>
+                <li><strong>tmux:</strong> Terminal multiplexer with advanced navigation and session management</li>
+                <li><strong>ctags:</strong> Code navigation and indexing for multiple programming languages</li>
                 <li><strong>AWS CLI:</strong> Profile configurations and region settings</li>
             </ul>
 

@@ -8,22 +8,34 @@ This directory contains editor and IDE configuration files optimized for DevOps 
 - **`.nanorc`** - Nano configuration with syntax highlighting
 - **`vscode/`** - VS Code settings and extensions
 
-## Vim Configuration (`.vimrc`)
+## Enhanced Vim Configuration (`.vimrc`)
 
 ### Features
+- **Python IDE Features**: Syntax highlighting, auto-completion, debugging support
+- **Advanced Plugins**: Git integration, file navigation, language support
+- **Productivity Functions**: Run Python files, generate ctags, file operations
+- **Enhanced Navigation**: Jump to functions, toggle header/source files
+- **Git Integration**: Status, commit, push, log, diff operations
+- **Code Formatting**: JSON formatting, trailing whitespace removal
 - **Line numbers** with relative numbering
-- **Syntax highlighting** for all file types
 - **Auto-indentation** and smart indentation
 - **Tab settings** optimized for different file types
-- **Key mappings** for common DevOps tasks
-- **Custom functions** for formatting and cleanup
 
-### Key Mappings
+### Advanced Key Mappings
+- `<leader>gs` - Git status
+- `<leader>gc` - Git commit
+- `<leader>gp` - Git push
+- `<leader>gl` - Git log
+- `<leader>gd` - Git diff
+- `<leader>r` - Run Python file
+- `<leader>s` - Run shell script
+- `<leader>g` - Generate ctags
+- `<leader>f` - Open file under cursor
+- `<leader>h` - Toggle header/source
+- `<leader>n` - Create new file
 - `<leader>w` - Save file
 - `<leader>q` - Quit
 - `<leader>c` - Clear search highlighting
-- `<leader>n` - Toggle line numbers
-- `<leader>p` - Toggle paste mode
 - `<leader>t` - Toggle between tabs and spaces
 - `<leader>j` - Format JSON
 

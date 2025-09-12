@@ -26,7 +26,7 @@ help: ## Show this help message
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  $(GREEN)%-20s$(NC) %s\n", $$1, $$2}' $(MAKEFILE_LIST) | grep -E "(install|setup)"
 	@echo ""
 	@echo "$(CYAN)Individual Components:$(NC)"
-	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  $(GREEN)%-20s$(NC) %s\n", $$1, $$2}' $(MAKEFILE_LIST) | grep -E "(shell|editor|git|tools)"
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  $(GREEN)%-20s$(NC) %s\n", $$1, $$2}' $(MAKEFILE_LIST) | grep -E "(shell|editor|git|tools|bash|zsh|profile|vim|nano|vscode|docker|kubernetes|terraform|tmux|ctags)"
 	@echo ""
 	@echo "$(CYAN)Documentation:$(NC)"
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  $(GREEN)%-20s$(NC) %s\n", $$1, $$2}' $(MAKEFILE_LIST) | grep -E "(docs|serve|deploy)"
@@ -79,6 +79,8 @@ install-tools: ## Install only DevOps tools configurations
 	@cp -r tools/docker/* ~/.docker/ 2>/dev/null || true
 	@cp -r tools/kubernetes/* ~/.kube/ 2>/dev/null || true
 	@cp -r tools/terraform/* ~/.terraform.d/ 2>/dev/null || true
+	@ln -sf $(DOTFILES_DIR)/tools/tmux/.tmux.conf $(HOME)/.tmux.conf
+	@ln -sf $(DOTFILES_DIR)/tools/ctags/.ctags $(HOME)/.ctags
 	@echo "$(GREEN)✅ DevOps tools configurations installed!$(NC)"
 
 .PHONY: install-docker
@@ -345,6 +347,80 @@ dev: ## Setup development environment
 	@make install-editors
 	@make install-git
 	@echo "$(GREEN)✅ Development environment ready!$(NC)"
+
+.PHONY: install-tmux
+install-tmux: ## Install only tmux configuration
+	@echo "$(BLUE)🖥️ Installing tmux configuration...$(NC)"
+	@ln -sf $(DOTFILES_DIR)/tools/tmux/.tmux.conf $(HOME)/.tmux.conf
+	@echo "$(GREEN)✅ tmux configuration installed!$(NC)"
+
+.PHONY: install-ctags
+install-ctags: ## Install only ctags configuration
+	@echo "$(BLUE)🏷️ Installing ctags configuration...$(NC)"
+	@ln -sf $(DOTFILES_DIR)/tools/ctags/.ctags $(HOME)/.ctags
+	@echo "$(GREEN)✅ ctags configuration installed!$(NC)"
+
+# Individual shell component targets
+.PHONY: install-bash
+install-bash: ## Install only Bash configuration
+	@echo "$(BLUE)🐚 Installing Bash configuration...$(NC)"
+	@cp $(DOTFILES_DIR)/shell/.bashrc $(HOME)/.bashrc
+	@echo "$(GREEN)✅ Bash configuration installed!$(NC)"
+
+.PHONY: install-zsh
+install-zsh: ## Install only Zsh configuration
+	@echo "$(BLUE)🐚 Installing Zsh configuration...$(NC)"
+	@cp $(DOTFILES_DIR)/shell/.zshrc $(HOME)/.zshrc
+	@echo "$(GREEN)✅ Zsh configuration installed!$(NC)"
+
+.PHONY: install-profile
+install-profile: ## Install only profile configuration
+	@echo "$(BLUE)🐚 Installing profile configuration...$(NC)"
+	@cp $(DOTFILES_DIR)/shell/.profile $(HOME)/.profile
+	@echo "$(GREEN)✅ Profile configuration installed!$(NC)"
+
+# Individual editor component targets
+.PHONY: install-vim
+install-vim: ## Install only Vim configuration
+	@echo "$(BLUE)✏️ Installing Vim configuration...$(NC)"
+	@mkdir -p $(HOME)/.vim/{backup,swap,undo}
+	@cp $(DOTFILES_DIR)/editors/.vimrc $(HOME)/.vimrc
+	@echo "$(GREEN)✅ Vim configuration installed!$(NC)"
+
+.PHONY: install-nano
+install-nano: ## Install only Nano configuration
+	@echo "$(BLUE)✏️ Installing Nano configuration...$(NC)"
+	@cp $(DOTFILES_DIR)/editors/.nanorc $(HOME)/.nanorc
+	@echo "$(GREEN)✅ Nano configuration installed!$(NC)"
+
+.PHONY: install-vscode
+install-vscode: ## Install only VS Code configuration
+	@echo "$(BLUE)✏️ Installing VS Code configuration...$(NC)"
+	@mkdir -p $(HOME)/.vscode
+	@cp -r $(DOTFILES_DIR)/editors/vscode/* $(HOME)/.vscode/
+	@echo "$(GREEN)✅ VS Code configuration installed!$(NC)"
+
+# Individual tool component targets
+.PHONY: install-docker
+install-docker: ## Install only Docker configurations
+	@echo "$(BLUE)🐳 Installing Docker configurations...$(NC)"
+	@mkdir -p $(HOME)/.docker
+	@cp -r $(DOTFILES_DIR)/tools/docker/* $(HOME)/.docker/
+	@echo "$(GREEN)✅ Docker configurations installed!$(NC)"
+
+.PHONY: install-kubernetes
+install-kubernetes: ## Install only Kubernetes configurations
+	@echo "$(BLUE)☸️ Installing Kubernetes configurations...$(NC)"
+	@mkdir -p $(HOME)/.kube
+	@cp -r $(DOTFILES_DIR)/tools/kubernetes/* $(HOME)/.kube/
+	@echo "$(GREEN)✅ Kubernetes configurations installed!$(NC)"
+
+.PHONY: install-terraform
+install-terraform: ## Install only Terraform configurations
+	@echo "$(BLUE)🏗️ Installing Terraform configurations...$(NC)"
+	@mkdir -p $(HOME)/.terraform.d
+	@cp -r $(DOTFILES_DIR)/tools/terraform/* $(HOME)/.terraform.d/
+	@echo "$(GREEN)✅ Terraform configurations installed!$(NC)"
 
 .PHONY: devops
 devops: ## Setup full DevOps environment

@@ -200,6 +200,146 @@ install_tools() {
         cp -r "$DOTFILES_DIR/tools/terraform/"* ~/.terraform.d/ 2>/dev/null || true
         print_success "Installed Terraform configurations"
     fi
+    
+    # Install tmux configuration
+    if [ -f "$DOTFILES_DIR/tools/tmux/.tmux.conf" ]; then
+        backup_file ~/.tmux.conf
+        ln -sf "$DOTFILES_DIR/tools/tmux/.tmux.conf" ~/.tmux.conf
+        print_success "Installed tmux configuration"
+    fi
+    
+    # Install ctags configuration
+    if [ -f "$DOTFILES_DIR/tools/ctags/.ctags" ]; then
+        backup_file ~/.ctags
+        ln -sf "$DOTFILES_DIR/tools/ctags/.ctags" ~/.ctags
+        print_success "Installed ctags configuration"
+    fi
+}
+
+# Install individual tool configurations
+install_docker() {
+    print_info "Installing Docker configurations..."
+    if [ -d "$DOTFILES_DIR/tools/docker" ]; then
+        mkdir -p ~/.docker
+        cp -r "$DOTFILES_DIR/tools/docker/"* ~/.docker/ 2>/dev/null || true
+        print_success "Installed Docker configurations"
+    else
+        print_warning "Docker configurations not found"
+    fi
+}
+
+install_kubernetes() {
+    print_info "Installing Kubernetes configurations..."
+    if [ -d "$DOTFILES_DIR/tools/kubernetes" ]; then
+        mkdir -p ~/.kube
+        cp -r "$DOTFILES_DIR/tools/kubernetes/"* ~/.kube/ 2>/dev/null || true
+        print_success "Installed Kubernetes configurations"
+    else
+        print_warning "Kubernetes configurations not found"
+    fi
+}
+
+install_terraform() {
+    print_info "Installing Terraform configurations..."
+    if [ -d "$DOTFILES_DIR/tools/terraform" ]; then
+        mkdir -p ~/.terraform.d
+        cp -r "$DOTFILES_DIR/tools/terraform/"* ~/.terraform.d/ 2>/dev/null || true
+        print_success "Installed Terraform configurations"
+    else
+        print_warning "Terraform configurations not found"
+    fi
+}
+
+install_tmux() {
+    print_info "Installing tmux configuration..."
+    if [ -f "$DOTFILES_DIR/tools/tmux/.tmux.conf" ]; then
+        backup_file ~/.tmux.conf
+        ln -sf "$DOTFILES_DIR/tools/tmux/.tmux.conf" ~/.tmux.conf
+        print_success "Installed tmux configuration"
+    else
+        print_warning "tmux configuration not found"
+    fi
+}
+
+install_ctags() {
+    print_info "Installing ctags configuration..."
+    if [ -f "$DOTFILES_DIR/tools/ctags/.ctags" ]; then
+        backup_file ~/.ctags
+        ln -sf "$DOTFILES_DIR/tools/ctags/.ctags" ~/.ctags
+        print_success "Installed ctags configuration"
+    else
+        print_warning "ctags configuration not found"
+    fi
+}
+
+# Install individual shell configurations
+install_bash() {
+    print_info "Installing Bash configuration..."
+    if [ -f "$DOTFILES_DIR/shell/.bashrc" ]; then
+        backup_file ~/.bashrc
+        cp "$DOTFILES_DIR/shell/.bashrc" ~/.bashrc
+        print_success "Installed .bashrc"
+    else
+        print_warning "Bash configuration not found"
+    fi
+}
+
+install_zsh() {
+    print_info "Installing Zsh configuration..."
+    if [ -f "$DOTFILES_DIR/shell/.zshrc" ]; then
+        backup_file ~/.zshrc
+        cp "$DOTFILES_DIR/shell/.zshrc" ~/.zshrc
+        print_success "Installed .zshrc"
+    else
+        print_warning "Zsh configuration not found"
+    fi
+}
+
+install_profile() {
+    print_info "Installing profile configuration..."
+    if [ -f "$DOTFILES_DIR/shell/.profile" ]; then
+        backup_file ~/.profile
+        cp "$DOTFILES_DIR/shell/.profile" ~/.profile
+        print_success "Installed .profile"
+    else
+        print_warning "Profile configuration not found"
+    fi
+}
+
+# Install individual editor configurations
+install_vim() {
+    print_info "Installing Vim configuration..."
+    mkdir -p ~/.vim/{backup,swap,undo}
+    if [ -f "$DOTFILES_DIR/editors/.vimrc" ]; then
+        backup_file ~/.vimrc
+        cp "$DOTFILES_DIR/editors/.vimrc" ~/.vimrc
+        print_success "Installed .vimrc"
+    else
+        print_warning "Vim configuration not found"
+    fi
+}
+
+install_nano() {
+    print_info "Installing Nano configuration..."
+    if [ -f "$DOTFILES_DIR/editors/.nanorc" ]; then
+        backup_file ~/.nanorc
+        cp "$DOTFILES_DIR/editors/.nanorc" ~/.nanorc
+        print_success "Installed .nanorc"
+    else
+        print_warning "Nano configuration not found"
+    fi
+}
+
+install_vscode() {
+    print_info "Installing VS Code configuration..."
+    if [ -d "$DOTFILES_DIR/editors/vscode" ]; then
+        backup_file ~/.vscode
+        mkdir -p ~/.vscode
+        cp -r "$DOTFILES_DIR/editors/vscode/"* ~/.vscode/
+        print_success "Installed VS Code settings"
+    else
+        print_warning "VS Code configuration not found"
+    fi
 }
 
 # Check prerequisites
@@ -306,8 +446,91 @@ install_completions() {
     fi
 }
 
+# Show help
+show_help() {
+    echo -e "${BLUE}DevOps Dotfiles Installation Script${NC}"
+    echo -e "${BLUE}====================================${NC}"
+    echo
+    echo "Usage: $0 [OPTIONS] [COMPONENTS...]"
+    echo
+    echo "OPTIONS:"
+    echo "  -h, --help     Show this help message"
+    echo "  -v, --version  Show version information"
+    echo
+    echo "COMPONENTS:"
+    echo "  all            Install all configurations (default)"
+    echo
+    echo "  Main Categories:"
+    echo "    shell        Install all shell configurations"
+    echo "    editors      Install all editor configurations"
+    echo "    git          Install Git configurations"
+    echo "    tools        Install all DevOps tools configurations"
+    echo
+    echo "  Individual Shell Components:"
+    echo "    bash         Install Bash configuration only"
+    echo "    zsh          Install Zsh configuration only"
+    echo "    profile      Install profile configuration only"
+    echo
+    echo "  Individual Editor Components:"
+    echo "    vim          Install Vim configuration only"
+    echo "    nano         Install Nano configuration only"
+    echo "    vscode       Install VS Code configuration only"
+    echo
+    echo "  Individual Tool Components:"
+    echo "    docker       Install Docker configurations only"
+    echo "    kubernetes   Install Kubernetes configurations only"
+    echo "    terraform    Install Terraform configurations only"
+    echo "    tmux         Install tmux configuration only"
+    echo "    ctags        Install ctags configuration only"
+    echo
+    echo "EXAMPLES:"
+    echo "  $0                    # Install everything"
+    echo "  $0 shell              # Install all shell configurations"
+    echo "  $0 vim tmux           # Install only Vim and tmux"
+    echo "  $0 bash docker        # Install only Bash and Docker"
+    echo "  $0 tools              # Install all DevOps tools"
+    echo
+}
+
+# Show version
+show_version() {
+    echo "DevOps Dotfiles Installation Script v1.0.0"
+    echo "Cross-platform installation for Linux, macOS, and Windows (WSL)"
+}
+
 # Main installation function
 main() {
+    local components=()
+    local install_all=true
+    
+    # Parse command line arguments
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -h|--help)
+                show_help
+                exit 0
+                ;;
+            -v|--version)
+                show_version
+                exit 0
+                ;;
+            all)
+                install_all=true
+                shift
+                ;;
+            shell|editors|git|tools|bash|zsh|profile|vim|nano|vscode|docker|kubernetes|terraform|tmux|ctags)
+                install_all=false
+                components+=("$1")
+                shift
+                ;;
+            *)
+                print_error "Unknown component: $1"
+                echo "Run '$0 --help' for available options"
+                exit 1
+                ;;
+        esac
+    done
+    
     print_header
     
     # Check prerequisites
@@ -319,12 +542,72 @@ main() {
     # Create backup directory
     create_backup
     
-    # Install configurations
-    install_shell
-    install_editors
-    install_git
-    install_tools
-    install_completions
+    # Install configurations based on arguments
+    if [ "$install_all" = true ] || [ ${#components[@]} -eq 0 ]; then
+        print_info "Installing all configurations..."
+        install_shell
+        install_editors
+        install_git
+        install_tools
+        install_completions
+    else
+        print_info "Installing selected components: ${components[*]}"
+        
+        for component in "${components[@]}"; do
+            case $component in
+                shell)
+                    install_shell
+                    ;;
+                editors)
+                    install_editors
+                    ;;
+                git)
+                    install_git
+                    ;;
+                tools)
+                    install_tools
+                    ;;
+                bash)
+                    install_bash
+                    ;;
+                zsh)
+                    install_zsh
+                    ;;
+                profile)
+                    install_profile
+                    ;;
+                vim)
+                    install_vim
+                    ;;
+                nano)
+                    install_nano
+                    ;;
+                vscode)
+                    install_vscode
+                    ;;
+                docker)
+                    install_docker
+                    ;;
+                kubernetes)
+                    install_kubernetes
+                    ;;
+                terraform)
+                    install_terraform
+                    ;;
+                tmux)
+                    install_tmux
+                    ;;
+                ctags)
+                    install_ctags
+                    ;;
+            esac
+        done
+        
+        # Install completions if shell or tools are installed
+        if [[ " ${components[*]} " =~ " shell " ]] || [[ " ${components[*]} " =~ " tools " ]] || [[ " ${components[*]} " =~ " bash " ]] || [[ " ${components[*]} " =~ " zsh " ]]; then
+            install_completions
+        fi
+    fi
     
     # Set up user configuration
     setup_user_config

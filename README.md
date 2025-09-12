@@ -28,21 +28,49 @@ cd dotfiles
 
 # Install everything
 make install
+# OR
+./install.sh
 
-# Or install specific components
+# Install specific categories
 make install-shell    # Shell configurations only
 make install-editors  # Editor configurations only
 make install-git      # Git configurations only
 make install-tools    # DevOps tools only
+
+# Install individual components
+make install-bash     # Bash configuration only
+make install-vim      # Vim configuration only
+make install-docker   # Docker configurations only
+make install-tmux     # tmux configuration only
+make install-ctags    # ctags configuration only
 ```
 
-#### Option 2: Installation Script
+#### Option 2: Flexible Installation Script
 ```bash
 # Clone and run installation script
 git clone https://github.com/iinsys/dotfiles.git
 cd dotfiles
 chmod +x install.sh
+
+# Install everything
 ./install.sh
+
+# Install specific categories
+./install.sh shell
+./install.sh tools
+./install.sh editors
+
+# Install individual components
+./install.sh vim
+./install.sh tmux
+./install.sh bash
+
+# Install multiple components
+./install.sh vim tmux
+./install.sh bash docker
+
+# Get help
+./install.sh --help
 ```
 
 #### Option 3: Manual Installation
@@ -69,14 +97,15 @@ source ~/.bashrc  # or ~/.zshrc
 ## 🛠️ What's Included
 
 ### Shell Configurations
+- **100+ advanced functions** for code navigation, system monitoring, and DevOps workflows
 - **80+ productivity aliases** for Git, Docker, Kubernetes, Terraform, AWS
-- **Custom functions** for common DevOps tasks (cleanup, backup, health checks)
 - **Enhanced prompts** with Git status and environment info
 - **Auto-completion** for kubectl, Docker, AWS CLI
 - **Cross-platform compatibility** (Bash & Zsh)
 
 ### Editor Configurations
-- **Vim**: Syntax highlighting, key mappings, file-type specific settings
+- **Enhanced Vim IDE**: Python IDE features, advanced plugins, code navigation, productivity functions
+- **Advanced Functions**: Run Python files, generate ctags, file operations, Git integration
 - **Nano**: DevOps syntax highlighting for YAML, Docker, Terraform
 - **VS Code**: Optimized settings, recommended extensions, language-specific configurations
 
@@ -91,6 +120,8 @@ source ~/.bashrc  # or ~/.zshrc
 - **Docker**: Comprehensive aliases, functions, and development environment templates
 - **Kubernetes**: Multi-cluster configurations, kubectl aliases, context switching
 - **Terraform**: Variable templates, aliases, security scanning, cost estimation
+- **tmux**: Terminal multiplexer with advanced navigation and session management
+- **ctags**: Code navigation and indexing for multiple programming languages
 - **AWS CLI**: Profile management, common operations, and best practices
 
 ## 🔧 Customization
@@ -110,8 +141,21 @@ Use the comprehensive Makefile for easy management:
 ```bash
 make help           # Show all available commands
 make install        # Install all configurations
+
+# Category installation
 make install-shell  # Install shell configurations only
+make install-editors # Install editor configurations only
 make install-git    # Install Git configurations only
+make install-tools  # Install DevOps tools only
+
+# Individual component installation
+make install-bash   # Install Bash configuration only
+make install-vim    # Install Vim configuration only
+make install-docker # Install Docker configurations only
+make install-tmux   # Install tmux configuration only
+make install-ctags  # Install ctags configuration only
+
+# Development and maintenance
 make validate       # Validate all configurations
 make test          # Run all tests
 make backup        # Backup existing configurations
@@ -160,15 +204,19 @@ We welcome contributions! Here's how to help:
 ### Key Benefits
 - **Fast Onboarding**: New team members get productive immediately
 - **Consistent Environment**: Same tools and aliases across all machines
-- **Productivity Boost**: 80+ aliases save hours of typing
+- **Productivity Boost**: 100+ functions and 80+ aliases save hours of typing
+- **Enhanced Development**: Vim IDE features, tmux sessions, code navigation
 - **Best Practices**: Built-in security and DevOps patterns
-- **Easy Customization**: Local override files for personal preferences
+- **Maximum Flexibility**: Install everything or just what you need
 - **Professional Quality**: No emojis in scripts, clean code, comprehensive documentation
 
 ### Automation Features
-- **Cross-platform installation script** with OS detection
-- **Comprehensive Makefile** with 40+ commands
+- **Flexible installation script** with command-line arguments and OS detection
+- **Comprehensive Makefile** with 50+ commands for granular control
+- **Individual component installation** for shell, editors, and tools
 - **Automated documentation deployment** via GitHub Actions
+- **Dependabot integration** for automated dependency updates
+- **Issue templates** with auto-assignment for better project management
 - **Validation and testing** for all configurations
 - **Backup and restore** functionality
 

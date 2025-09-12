@@ -313,12 +313,27 @@ cd dotfiles
 
 # Install everything
 make install
+# OR
+./install.sh
 
-# Or install specific components
+# Install specific categories
 make install-shell
 make install-editors
 make install-git
-make install-tools</div>
+make install-tools
+
+# Install individual components
+make install-bash
+make install-vim
+make install-docker
+make install-tmux
+make install-ctags
+
+# Using install.sh with arguments
+./install.sh shell
+./install.sh vim tmux
+./install.sh bash docker
+./install.sh --help</div>
 
             <div>
                 <a href="https://github.com/iinsys/dotfiles" class="btn">View on GitHub</a>
@@ -331,13 +346,13 @@ make install-tools</div>
             <div class="grid">
                 <div class="card">
                     <h3>Shell Configurations</h3>
-                    <p>Bash and Zsh configurations with 80+ aliases, functions, and custom prompts for maximum productivity.</p>
+                    <p>Bash and Zsh configurations with 100+ aliases, advanced functions, and productivity tools for DevOps workflows.</p>
                     <a href="shell.html" class="btn">View Shell Docs</a>
                 </div>
                 
                 <div class="card">
                     <h3>Editor Configurations</h3>
-                    <p>Vim, Nano, and VS Code configurations with themes, plugins, and productivity settings.</p>
+                    <p>Enhanced Vim IDE setup, Nano, and VS Code configurations with Python IDE features and advanced plugins.</p>
                     <a href="editors.html" class="btn">View Editor Docs</a>
                 </div>
                 
@@ -349,7 +364,7 @@ make install-tools</div>
                 
                 <div class="card">
                     <h3>DevOps Tools</h3>
-                    <p>Docker, Kubernetes, Terraform, and AWS CLI configurations with aliases and functions.</p>
+                    <p>Docker, Kubernetes, Terraform, tmux, and ctags configurations with templates and advanced features.</p>
                     <a href="tools.html" class="btn">View Tools Docs</a>
                 </div>
             </div>
@@ -363,16 +378,20 @@ make install-tools</div>
                     <p>Works on Linux, macOS, Windows (WSL), and FreeBSD with automatic OS detection.</p>
                 </div>
                 <div class="feature">
-                    <h4>80+ Shell Aliases</h4>
-                    <p>Comprehensive aliases for common DevOps tasks, file operations, and system management.</p>
+                    <h4>100+ Shell Functions</h4>
+                    <p>Advanced functions for code navigation, system monitoring, file operations, and DevOps workflows.</p>
                 </div>
                 <div class="feature">
-                    <h4>Custom Prompts</h4>
-                    <p>Informative shell prompts showing Git status, Kubernetes context, and environment info.</p>
+                    <h4>Enhanced Vim IDE</h4>
+                    <p>Python IDE features, advanced plugins, code navigation, and productivity functions.</p>
                 </div>
                 <div class="feature">
-                    <h4>Editor Configs</h4>
-                    <p>Pre-configured Vim, Nano, and VS Code with themes, plugins, and productivity settings.</p>
+                    <h4>Terminal Multiplexing</h4>
+                    <p>tmux configuration with mouse support, advanced navigation, and session management.</p>
+                </div>
+                <div class="feature">
+                    <h4>Code Navigation</h4>
+                    <p>ctags configuration supporting Python, JavaScript, Go, Docker, Terraform, and more.</p>
                 </div>
                 <div class="feature">
                     <h4>Git Integration</h4>
@@ -380,7 +399,7 @@ make install-tools</div>
                 </div>
                 <div class="feature">
                     <h4>DevOps Tools</h4>
-                    <p>Docker, Kubernetes, Terraform, and AWS CLI configurations with helpful aliases.</p>
+                    <p>Docker, Kubernetes, Terraform, tmux, and ctags configurations with advanced features.</p>
                 </div>
             </div>
         </section>
@@ -395,6 +414,21 @@ make install-shell    # Install shell configurations only
 make install-editors  # Install editor configurations only
 make install-git      # Install Git configurations only
 make install-tools    # Install DevOps tools only
+
+# Individual component installation
+make install-bash     # Install Bash configuration only
+make install-zsh      # Install Zsh configuration only
+make install-vim      # Install Vim configuration only
+make install-nano     # Install Nano configuration only
+make install-docker   # Install Docker configurations only
+make install-tmux     # Install tmux configuration only
+make install-ctags    # Install ctags configuration only
+
+# Using install.sh script
+./install.sh          # Install everything
+./install.sh shell    # Install shell configurations
+./install.sh vim tmux # Install specific components
+./install.sh --help   # Show help and options
 
 # Development commands
 make docs             # Generate documentation

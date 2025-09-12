@@ -213,22 +213,36 @@ make install-editors
 
             <h3>Supported Editors</h3>
 
-            <h3>Vim Configuration</h3>
+            <h3>Enhanced Vim Configuration</h3>
             <ul>
-                <li><strong>Theme:</strong> Dark theme with syntax highlighting</li>
-                <li><strong>Plugins:</strong> Vundle plugin manager setup</li>
-                <li><strong>Settings:</strong> Line numbers, auto-indent, search highlighting</li>
-                <li><strong>Key Mappings:</strong> Custom shortcuts for common tasks</li>
+                <li><strong>Python IDE Features:</strong> Syntax highlighting, auto-completion, debugging support</li>
+                <li><strong>Advanced Plugins:</strong> Git integration, file navigation, language support</li>
+                <li><strong>Productivity Functions:</strong> Run Python files, generate ctags, file operations</li>
+                <li><strong>Enhanced Navigation:</strong> Jump to functions, toggle header/source files</li>
+                <li><strong>Git Integration:</strong> Status, commit, push, log, diff operations</li>
+                <li><strong>Code Formatting:</strong> JSON formatting, trailing whitespace removal</li>
             </ul>
 
-            <div class="code-block"># Sample Vim settings
-set number
-set autoindent
-set smartindent
-set hlsearch
-set incsearch
-set ruler
-set showcmd</div>
+            <div class="code-block"># Enhanced Vim Functions
+:call RunPythonFile()        # Execute current Python file
+:call RunShellScript()       # Execute current shell script
+:call GenerateCtags()        # Generate code navigation tags
+:call OpenFileUnderCursor()  # Open file under cursor
+:call ToggleHeaderSource()   # Switch between header/source files
+:call CreateNewFile()        # Create new file in current directory
+
+# Key Mappings
+,gs    # Git status
+,gc    # Git commit
+,gp    # Git push
+,gl    # Git log
+,gd    # Git diff
+,r     # Run Python file
+,s     # Run shell script
+,g     # Generate ctags
+,f     # Open file under cursor
+,h     # Toggle header/source
+,n     # Create new file</div>
 
             <h3>Nano Configuration</h3>
             <ul>

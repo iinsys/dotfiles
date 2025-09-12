@@ -214,7 +214,7 @@ make install-shell
             <h3>What's Included</h3>
             <ul>
                 <li><strong>80+ Aliases:</strong> Common DevOps tasks, file operations, system management</li>
-                <li><strong>Custom Functions:</strong> Docker, Kubernetes, Git utilities</li>
+                <li><strong>Advanced Functions:</strong> 100+ functions for code navigation, system monitoring, and DevOps workflows</li>
                 <li><strong>Smart Prompts:</strong> Git status, K8s context, environment info</li>
                 <li><strong>Auto-completion:</strong> Enhanced tab completion for commands</li>
                 <li><strong>Environment Variables:</strong> Optimized PATH and tool settings</li>
@@ -241,22 +241,36 @@ alias gc='git commit'
 alias gp='git push'
 alias gl='git log --oneline'</div>
 
-            <h3>Custom Functions</h3>
-            <div class="code-block"># Docker cleanup function
-dcleanup() {
-    docker system prune -f
-    docker volume prune -f
-}
+            <h3>Advanced Functions</h3>
+            <div class="code-block"># Code Navigation
+ctags()                    # Generate ctags for current directory
+findreplace()              # Find and replace text in files
+glog()                     # Git log with graph
+gstatus()                  # Git status with details
+gitinit()                  # Initialize git repo with initial commit
+gbranch()                  # Show current branch with status
 
-# Kubernetes context switching
-kctx() {
-    kubectl config use-context "$1"
-}
+# System Monitoring
+dstats()                   # Docker container resource usage
+psaux()                    # Top CPU consuming processes
+memtop()                   # Top memory consuming processes
+load()                     # System load average
+iostat()                   # Disk I/O statistics
+netstats()                 # Network interface statistics
+sysinfo()                  # Comprehensive system information
 
-# Git quick commit
-gqc() {
-    git add . && git commit -m "$1" && git push
-}</div>
+# File Operations
+monitor()                  # Monitor file changes in directory
+dirsize()                  # Show current directory size
+backup()                   # Backup file with timestamp
+restore()                  # Restore from backup
+tmpdir()                   # Create temporary directory
+
+# Utility Functions
+weather()                  # Show weather information
+gdiffw()                   # Git diff with word-level changes
+glogf()                    # Git log with file changes
+gblame()                   # Git blame for file</div>
 
             <div>
                 <a href="https://github.com/iinsys/dotfiles/blob/main/shell/.bashrc" class="btn" target="_blank">View .bashrc</a>

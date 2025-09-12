@@ -18,7 +18,11 @@ This directory contains shell configuration files optimized for DevOps work.
 - **AWS**: `aws-profile`, `aws-region`
 - **System**: `ll`, `la`, `..`, `...`, `ports`, `myip`, `weather`
 
-### Functions
+### Advanced Functions (100+ functions)
+- **Code Navigation**: `ctags()`, `findreplace()`, `glog()`, `gstatus()`, `gitinit()`, `gbranch()`
+- **System Monitoring**: `dstats()`, `psaux()`, `memtop()`, `load()`, `iostat()`, `netstats()`, `sysinfo()`
+- **File Operations**: `monitor()`, `dirsize()`, `backup()`, `restore()`, `tmpdir()`
+- **Utility Functions**: `weather()`, `gdiffw()`, `glogf()`, `gblame()`
 - **Docker**: `dclean()`, `dstopall()`
 - **Git**: `gac()`, `gacp()`
 - **Kubernetes**: `kns()`, `kctx()`

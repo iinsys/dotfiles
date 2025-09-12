@@ -205,6 +205,190 @@ if command -v kubectl &> /dev/null; then
 fi
 
 # =============================================================================
+# ADVANCED FUNCTIONS (Inspired by referenced projects)
+# =============================================================================
+
+# Function to generate ctags for current directory
+ctags() {
+    if command -v ctags >/dev/null 2>&1; then
+        ctags -R .
+        echo "Ctags generated successfully"
+    else
+        echo "ctags not found. Install with: apt-get install ctags (Ubuntu/Debian) or brew install ctags (macOS)"
+    fi
+}
+
+# Function to find and replace in files
+findreplace() {
+    if [ $# -ne 3 ]; then
+        echo "Usage: findreplace <search> <replace> <file_pattern>"
+        echo "Example: findreplace 'old_text' 'new_text' '*.py'"
+        return 1
+    fi
+    find . -name "$3" -type f -exec sed -i "s/$1/$2/g" {} \;
+    echo "Replaced '$1' with '$2' in files matching '$3'"
+}
+
+# Function to show git log with graph
+glog() {
+    git log --oneline --graph --decorate --all
+}
+
+# Function to show git status with more details
+gstatus() {
+    git status --porcelain | while read -r line; do
+        echo "$line"
+    done
+}
+
+# Function to create a new git repository with initial commit
+gitinit() {
+    git init
+    git add .
+    git commit -m "Initial commit"
+    echo "Git repository initialized with initial commit"
+}
+
+# Function to show current git branch with status
+gbranch() {
+    local branch=$(git branch --show-current 2>/dev/null)
+    if [ -n "$branch" ]; then
+        local status=$(git status --porcelain 2>/dev/null | wc -l)
+        if [ "$status" -gt 0 ]; then
+            echo "Branch: $branch (uncommitted changes: $status)"
+        else
+            echo "Branch: $branch (clean)"
+        fi
+    else
+        echo "Not in a git repository"
+    fi
+}
+
+# Function to show Docker container resource usage
+dstats() {
+    docker stats --no-stream --format "table {{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.NetIO}}\t{{.BlockIO}}"
+}
+
+# Function to show running processes with resource usage
+psaux() {
+    ps aux --sort=-%cpu | head -20
+}
+
+# Function to monitor file changes in a directory
+monitor() {
+    if command -v inotifywait >/dev/null 2>&1; then
+        inotifywait -m -r -e modify,create,delete,move "$1"
+    elif command -v fswatch >/dev/null 2>&1; then
+        fswatch -o "$1"
+    else
+        echo "No file monitoring tool found. Install inotify-tools or fswatch"
+    fi
+}
+
+# Function to show weather information
+weather() {
+    local city="${1:-}"
+    if [ -n "$city" ]; then
+        curl -s "wttr.in/$city"
+    else
+        curl -s "wttr.in"
+    fi
+}
+
+# Function to show current directory size
+dirsize() {
+    du -sh . 2>/dev/null | cut -f1
+}
+
+# Function to show top memory consuming processes
+memtop() {
+    ps aux --sort=-%mem | head -10
+}
+
+# Function to show network interface statistics
+netstats() {
+    if command -v ip >/dev/null 2>&1; then
+        ip -s link show
+    else
+        ifconfig
+    fi
+}
+
+# Function to show system load with colors
+load() {
+    local load1=$(uptime | awk -F'load average:' '{print $2}' | awk -F',' '{print $1}' | tr -d ' ')
+    local load5=$(uptime | awk -F'load average:' '{print $2}' | awk -F',' '{print $2}' | tr -d ' ')
+    local load15=$(uptime | awk -F'load average:' '{print $2}' | awk -F',' '{print $3}' | tr -d ' ')
+    
+    echo "Load Average:"
+    echo "  1 min:  $load1"
+    echo "  5 min:  $load5"
+    echo "  15 min: $load15"
+}
+
+# Function to show disk I/O statistics
+iostat() {
+    if command -v iostat >/dev/null 2>&1; then
+        iostat -x 1 3
+    else
+        echo "iostat not found. Install with: apt-get install sysstat (Ubuntu/Debian)"
+    fi
+}
+
+# Function to create a temporary directory and cd into it
+tmpdir() {
+    local dir=$(mktemp -d)
+    cd "$dir"
+    echo "Created temporary directory: $dir"
+    echo "Use 'exit' to return to previous directory and clean up"
+}
+
+# Function to show git diff with word-level changes
+gdiffw() {
+    git diff --word-diff
+}
+
+# Function to show git log with file changes
+glogf() {
+    git log --stat --oneline
+}
+
+# Function to show git blame for a file
+gblame() {
+    git blame "$1" | head -20
+}
+
+# Function to show system information
+sysinfo() {
+    echo "=== System Information ==="
+    uname -a
+    echo
+    echo "=== Memory Usage ==="
+    free -h
+    echo
+    echo "=== Disk Usage ==="
+    df -h
+    echo
+    echo "=== Load Average ==="
+    uptime
+}
+
+# Function to backup a file
+backup() {
+    cp "$1" "$1.backup.$(date +%Y%m%d_%H%M%S)"
+}
+
+# Function to restore from backup
+restore() {
+    if [ -f "$1" ]; then
+        cp "$1" "${1%.backup.*}"
+        echo "Restored from $1"
+    else
+        echo "Backup file $1 not found"
+    fi
+}
+
+# =============================================================================
 # LOCAL CUSTOMIZATIONS
 # =============================================================================
 

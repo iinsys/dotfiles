@@ -1,0 +1,117 @@
+# DevOps Ctags Configuration
+# Enhanced code navigation and indexing
+
+# =============================================================================
+# GENERAL SETTINGS
+# =============================================================================
+
+# Include extra information
+--extra=+f+q
+
+# Include language-specific information
+--fields=+afikKlmnsSzt
+
+# =============================================================================
+# LANGUAGE SUPPORT
+# =============================================================================
+
+# Python
+--langdef=Python
+--langmap=Python:.py
+--regex-Python=/^[ \t]*class[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)/\1/c,class/
+--regex-Python=/^[ \t]*def[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)/\1/f,function/
+--regex-Python=/^[ \t]*async[ \t]+def[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)/\1/f,function/
+--regex-Python=/^[ \t]*@([a-zA-Z_][a-zA-Z0-9_]*)/\1/d,decorator/
+
+# JavaScript/TypeScript
+--langdef=JavaScript
+--langmap=JavaScript:.js
+--langmap=JavaScript:.jsx
+--langmap=JavaScript:.ts
+--langmap=JavaScript:.tsx
+--regex-JavaScript=/^[ \t]*function[ \t]+([a-zA-Z_$][a-zA-Z0-9_$]*)/\1/f,function/
+--regex-JavaScript=/^[ \t]*([a-zA-Z_$][a-zA-Z0-9_$]*)[ \t]*:[ \t]*function/\1/f,function/
+--regex-JavaScript=/^[ \t]*([a-zA-Z_$][a-zA-Z0-9_$]*)[ \t]*=[ \t]*function/\1/f,function/
+--regex-JavaScript=/^[ \t]*class[ \t]+([a-zA-Z_$][a-zA-Z0-9_$]*)/\1/c,class/
+--regex-JavaScript=/^[ \t]*const[ \t]+([a-zA-Z_$][a-zA-Z0-9_$]*)/\1/v,constant/
+--regex-JavaScript=/^[ \t]*let[ \t]+([a-zA-Z_$][a-zA-Z0-9_$]*)/\1/v,variable/
+--regex-JavaScript=/^[ \t]*var[ \t]+([a-zA-Z_$][a-zA-Z0-9_$]*)/\1/v,variable/
+
+# Go
+--langdef=Go
+--langmap=Go:.go
+--regex-Go=/^[ \t]*func[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)/\1/f,function/
+--regex-Go=/^[ \t]*type[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)/\1/t,type/
+--regex-Go=/^[ \t]*var[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)/\1/v,variable/
+--regex-Go=/^[ \t]*const[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)/\1/c,constant/
+
+# Shell Scripts
+--langdef=Shell
+--langmap=Shell:.sh
+--langmap=Shell:.bash
+--langmap=Shell:.zsh
+--langmap=Shell:.fish
+--regex-Shell=/^[ \t]*function[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)/\1/f,function/
+--regex-Shell=/^[ \t]*([a-zA-Z_][a-zA-Z0-9_]*)[ \t]*\(\)/\1/f,function/
+
+# Docker
+--langdef=Dockerfile
+--langmap=Dockerfile:Dockerfile
+--langmap=Dockerfile:*.dockerfile
+--regex-Dockerfile=/^[ \t]*FROM[ \t]+([a-zA-Z0-9_\/\-\.:]+)/\1/i,image/
+--regex-Dockerfile=/^[ \t]*LABEL[ \t]+([a-zA-Z0-9_]+)/\1/l,label/
+--regex-Dockerfile=/^[ \t]*ENV[ \t]+([a-zA-Z0-9_]+)/\1/e,environment/
+
+# Terraform
+--langdef=Terraform
+--langmap=Terraform:.tf
+--langmap=Terraform:.tfvars
+--regex-Terraform=/^[ \t]*resource[ \t]+"([^"]+)"[ \t]+"([^"]+)"/\2/r,resource/
+--regex-Terraform=/^[ \t]*data[ \t]+"([^"]+)"[ \t]+"([^"]+)"/\2/d,data/
+--regex-Terraform=/^[ \t]*variable[ \t]+"([^"]+)"/\1/v,variable/
+--regex-Terraform=/^[ \t]*output[ \t]+"([^"]+)"/\1/o,output/
+--regex-Terraform=/^[ \t]*module[ \t]+"([^"]+)"/\1/m,module/
+
+# YAML
+--langdef=YAML
+--langmap=YAML:.yml
+--langmap=YAML:.yaml
+--regex-YAML=/^[ \t]*([a-zA-Z_][a-zA-Z0-9_]*):/\1/k,key/
+
+# JSON
+--langdef=JSON
+--langmap=JSON:.json
+--regex-JSON=/^[ \t]*"([^"]+)":/\1/k,key/
+
+# =============================================================================
+# EXCLUSIONS
+# =============================================================================
+
+# Exclude common directories
+--exclude=node_modules
+--exclude=.git
+--exclude=.svn
+--exclude=.hg
+--exclude=build
+--exclude=dist
+--exclude=target
+--exclude=*.min.js
+--exclude=*.min.css
+--exclude=*.log
+--exclude=*.tmp
+--exclude=*.swp
+--exclude=*.swo
+--exclude=*~
+
+# =============================================================================
+# OUTPUT FORMAT
+# =============================================================================
+
+# Sort tags by name
+--sort=yes
+
+# Include line numbers
+--line-numbers=yes
+
+# Include file names
+--file-scope=yes
