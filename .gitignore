@@ -1,0 +1,43 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Backup files created by install script
+.dotfiles-backup-*
+
+# Backup files
+*.backup
+*.bak
+
+# Test files
+test.gitconfig
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# IDE files
+.vscode/settings.json
+.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+
+# Personal configuration overrides
+*.local
+*.personal
+
+# OS generated files
+.fuse_hidden*
+.nfs*

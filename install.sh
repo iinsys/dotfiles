@@ -446,6 +446,99 @@ install_completions() {
     fi
 }
 
+# Interactive component selection
+interactive_selection() {
+    local components=()
+    
+    echo -e "${CYAN}Interactive Component Selection${NC}"
+    echo -e "${CYAN}==============================${NC}"
+    echo
+    echo "Select which components to install:"
+    echo
+    
+    # Main categories
+    echo -e "${YELLOW}Main Categories:${NC}"
+    echo
+    read -p "Install all shell configurations? (y/N): " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        components+=("shell")
+    fi
+    
+    read -p "Install all editor configurations? (y/N): " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        components+=("editors")
+    fi
+    
+    read -p "Install Git configurations? (y/N): " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        components+=("git")
+    fi
+    
+    read -p "Install all DevOps tools configurations? (y/N): " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        components+=("tools")
+    fi
+    
+    echo
+    echo -e "${YELLOW}Individual Components:${NC}"
+    echo "If you selected main categories above, you can also add individual components:"
+    echo
+    
+    # Individual shell components
+    read -p "Install Bash configuration only? (y/N): " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        components+=("bash")
+    fi
+    
+    read -p "Install Zsh configuration only? (y/N): " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        components+=("zsh")
+    fi
+    
+    # Individual editor components
+    read -p "Install Vim configuration only? (y/N): " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        components+=("vim")
+    fi
+    
+    read -p "Install VS Code configuration only? (y/N): " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        components+=("vscode")
+    fi
+    
+    # Individual tool components
+    read -p "Install Docker configurations only? (y/N): " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        components+=("docker")
+    fi
+    
+    read -p "Install tmux configuration only? (y/N): " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        components+=("tmux")
+    fi
+    
+    echo
+    if [ ${#components[@]} -eq 0 ]; then
+        print_warning "No components selected. Installing everything..."
+        components=("all")
+    else
+        print_info "Selected components: ${components[*]}"
+    fi
+    
+    # Return components as space-separated string
+    printf '%s ' "${components[@]}"
+}
+
 # Show help
 show_help() {
     echo -e "${BLUE}DevOps Dotfiles Installation Script${NC}"
@@ -456,6 +549,7 @@ show_help() {
     echo "OPTIONS:"
     echo "  -h, --help     Show this help message"
     echo "  -v, --version  Show version information"
+    echo "  -i, --interactive  Interactive component selection"
     echo
     echo "COMPONENTS:"
     echo "  all            Install all configurations (default)"
@@ -485,6 +579,7 @@ show_help() {
     echo
     echo "EXAMPLES:"
     echo "  $0                    # Install everything"
+    echo "  $0 -i                 # Interactive selection menu"
     echo "  $0 shell              # Install all shell configurations"
     echo "  $0 vim tmux           # Install only Vim and tmux"
     echo "  $0 bash docker        # Install only Bash and Docker"
@@ -513,6 +608,12 @@ main() {
             -v|--version)
                 show_version
                 exit 0
+                ;;
+            -i|--interactive)
+                local selected_components=($(interactive_selection))
+                components=("${selected_components[@]}")
+                install_all=false
+                shift
                 ;;
             all)
                 install_all=true
@@ -623,10 +724,41 @@ main() {
     print_info "Backup created at: $BACKUP_DIR"
     echo
     print_info "Available aliases:"
-    echo "  Git: gs, ga, gc, gp, gl, gd, gb, gco, gpl"
-    echo "  Docker: d, dc, dps, dpsa, di, dex, dlog"
-    echo "  Kubernetes: k, kgp, kgs, kgd, kgn, klog"
-    echo "  Terraform: tf, tfi, tfp, tfa, tfd"
+    echo
+    echo -e "${YELLOW}Git Aliases:${NC}"
+    echo "  gs   - git status (show repository status)"
+    echo "  ga   - git add (stage files)"
+    echo "  gc   - git commit (commit changes)"
+    echo "  gp   - git push (push to remote)"
+    echo "  gl   - git log --oneline (show commit history)"
+    echo "  gd   - git diff (show changes)"
+    echo "  gb   - git branch (list branches)"
+    echo "  gco  - git checkout (switch branches)"
+    echo "  gpl  - git pull (pull from remote)"
+    echo
+    echo -e "${YELLOW}Docker Aliases:${NC}"
+    echo "  d    - docker (docker command)"
+    echo "  dc   - docker-compose (docker-compose command)"
+    echo "  dps  - docker ps (list running containers)"
+    echo "  dpsa - docker ps -a (list all containers)"
+    echo "  di   - docker images (list images)"
+    echo "  dex  - docker exec -it (execute in container)"
+    echo "  dlog - docker logs (show container logs)"
+    echo
+    echo -e "${YELLOW}Kubernetes Aliases:${NC}"
+    echo "  k    - kubectl (kubectl command)"
+    echo "  kgp  - kubectl get pods (list pods)"
+    echo "  kgs  - kubectl get services (list services)"
+    echo "  kgd  - kubectl get deployments (list deployments)"
+    echo "  kgn  - kubectl get nodes (list nodes)"
+    echo "  klog - kubectl logs (show pod logs)"
+    echo
+    echo -e "${YELLOW}Terraform Aliases:${NC}"
+    echo "  tf   - terraform (terraform command)"
+    echo "  tfi  - terraform init (initialize terraform)"
+    echo "  tfp  - terraform plan (plan changes)"
+    echo "  tfa  - terraform apply (apply changes)"
+    echo "  tfd  - terraform destroy (destroy infrastructure)"
     echo
     print_info "Run 'alias' to see all available aliases"
     echo

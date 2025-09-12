@@ -5,6 +5,7 @@ This directory contains Git configuration files optimized for DevOps work.
 ## Files
 
 - **`.gitconfig`** - Git global configuration with DevOps-friendly settings
+`Note`: Make sure to change the github username and email in this `.gitconfig` file before using 
 - **`.gitignore_global`** - Global gitignore patterns for common files
 
 ## Git Configuration (`.gitconfig`)
@@ -17,6 +18,24 @@ This directory contains Git configuration files optimized for DevOps work.
 - **Whitespace handling**: Trailing spaces and tabs before spaces
 
 ### Aliases
+
+#### Shell Aliases (Most Common)
+These are the aliases available in your shell after installation:
+
+- `gs` - git status (show repository status)
+- `ga` - git add (stage files)
+- `gc` - git commit (commit changes)
+- `gp` - git push (push to remote)
+- `gl` - git log --oneline (show commit history)
+- `gd` - git diff (show changes)
+- `gb` - git branch (list branches)
+- `gco` - git checkout (switch branches)
+- `gpl` - git pull (pull from remote)
+- `gst` - git stash (stash changes)
+- `gstp` - git stash pop (apply and remove stash)
+
+#### Git Internal Aliases
+These are Git's internal aliases (use with `git` command):
 
 #### Basic Git Operations
 - `st` - status

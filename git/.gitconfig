@@ -1,342 +1,240 @@
-# DevOps Git Configuration
-# Practical settings for DevOps work
-
 [user]
-	# Set your name and email
-	# name = Your Name
-	# email = your.email@example.com
+    name = bansikah22
+    email = tandapnoelbansikah@gmail.com
+    
+[commit]
+    gpgsign = false
+
+[gpg]
+    program = /usr/local/bin/gpg
 
 [core]
-	# Use vim as default editor
-	editor = vim
-	
-	# Enable color output
-	color.ui = auto
-	
-	# Set line ending handling
-	autocrlf = input
-	eol = lf
-	
-	# Set file mode
-	filemode = true
-	
-	# Set ignore case
-	ignorecase = false
-	
-	# Set precompose unicode
-	precomposeunicode = true
-	
-	# Set quote path
-	quotepath = false
-	
-	# Set whitespace handling
-	whitespace = trailing-space,space-before-tab
-	
-	# Set pager
-	pager = less -FRX
-
-[push]
-	# Set default push behavior
-	default = simple
-	
-	# Set auto setup remote
-	autoSetupRemote = true
-
-[pull]
-	# Set default pull behavior
-	default = current
-	
-	# Set rebase behavior
-	rebase = false
-
-[merge]
-	# Set merge tool
-	tool = vimdiff
-	
-	# Set conflict style
-	conflictstyle = diff3
-
-[diff]
-	# Set diff tool
-	tool = vimdiff
-	
-	# Set color output
-	colorMoved = zebra
-	
-	# Set algorithm
-	algorithm = patience
-
-[status]
-	# Set status output
-	showUntrackedFiles = all
-	
-	# Set branch output
-	branch = true
-
-[log]
-	# Set log format
-	date = short
-	
-	# Set decoration
-	decorate = short
-	
-	# Set graph
-	graph = true
-
-[alias]
-	# Basic aliases
-	st = status
-	co = checkout
-	br = branch
-	ci = commit
-	df = diff
-	lg = log --oneline --graph --decorate --all
-	last = log -1 HEAD
-	visual = !gitk
-	
-	# Status aliases
-	s = status --short --branch
-	ss = status --short
-	
-	# Commit aliases
-	cm = commit -m
-	ca = commit -a
-	cam = commit -am
-	amend = commit --amend
-	
-	# Branch aliases
-	b = branch
-	ba = branch -a
-	bd = branch -d
-	bD = branch -D
-	bm = branch -m
-	br = branch -r
-	
-	# Checkout aliases
-	co = checkout
-	cob = checkout -b
-	com = checkout main
-	cod = checkout develop
-	
-	# Merge aliases
-	m = merge
-	mn = merge --no-ff
-	ms = merge --squash
-	
-	# Rebase aliases
-	rb = rebase
-	ri = rebase -i
-	rc = rebase --continue
-	ra = rebase --abort
-	rs = rebase --skip
-	
-	# Stash aliases
-	sa = stash apply
-	sc = stash clear
-	sd = stash drop
-	sl = stash list
-	sp = stash pop
-	sts = stash save
-	sw = stash show
-	
-	# Remote aliases
-	rem = remote
-	ra = remote add
-	rr = remote remove
-	rv = remote -v
-	ru = remote update
-	rp = remote prune
-	
-	# Fetch aliases
-	f = fetch
-	fa = fetch --all
-	fp = fetch --prune
-	
-	# Pull aliases
-	p = pull
-	pr = pull --rebase
-	pt = pull --tags
-	
-	# Push aliases
-	pu = push
-	pum = push origin main
-	pud = push origin develop
-	put = push --tags
-	puu = push -u origin HEAD
-	
-	# Log aliases
-	l = log --oneline
-	ll = log --oneline --graph --decorate --all
-	lf = log --follow
-	lp = log --patch
-	ls = log --stat
-	l1 = log -1
-	l5 = log -5
-	l10 = log -10
-	
-	# Show aliases
-	sh = show
-	shs = show --stat
-	shp = show --patch
-	
-	# Diff aliases
-	d = diff
-	dc = diff --cached
-	dh = diff HEAD
-	d1 = diff HEAD~1
-	d2 = diff HEAD~2
-	d3 = diff HEAD~3
-	
-	# Reset aliases
-	rst = reset
-	rh = reset --hard
-	rsoft = reset --soft
-	rm = reset --mixed
-	
-	# Clean aliases
-	cl = clean
-	clf = clean -f
-	cld = clean -fd
-	
-	# Tag aliases
-	t = tag
-	ta = tag -a
-	td = tag -d
-	tl = tag -l
-	
-	# Config aliases
-	cf = config
-	cfl = config --list
-	cfg = config --global
-	cflocal = config --local
-	
-	# DevOps specific aliases
-	# Docker
-	docker-log = log --oneline --grep="docker"
-	docker-commit = commit -m "docker: "
-	
-	# Kubernetes
-	k8s-log = log --oneline --grep="k8s"
-	k8s-commit = commit -m "k8s: "
-	
-	# Terraform
-	tf-log = log --oneline --grep="terraform"
-	tf-commit = commit -m "terraform: "
-	
-	# AWS
-	aws-log = log --oneline --grep="aws"
-	aws-commit = commit -m "aws: "
-	
-	# CI/CD
-	ci-log = log --oneline --grep="ci"
-	ci-commit = commit -m "ci: "
-	
-	# Security
-	sec-log = log --oneline --grep="security"
-	sec-commit = commit -m "security: "
-	
-	# Bug fixes
-	fix-log = log --oneline --grep="fix"
-	fix-commit = commit -m "fix: "
-	
-	# Features
-	feat-log = log --oneline --grep="feat"
-	feat-commit = commit -m "feat: "
-	
-	# Documentation
-	docs-log = log --oneline --grep="docs"
-	docs-commit = commit -m "docs: "
-	
-	# Refactoring
-	refactor-log = log --oneline --grep="refactor"
-	refactor-commit = commit -m "refactor: "
-	
-	# Performance
-	perf-log = log --oneline --grep="perf"
-	perf-commit = commit -m "perf: "
-	
-	# Tests
-	test-log = log --oneline --grep="test"
-	test-commit = commit -m "test: "
-	
-	# Chores
-	chore-log = log --oneline --grep="chore"
-	chore-commit = commit -m "chore: "
+    editor = vim
+    autocrlf = input
+    eol = lf
+    filemode = true
+    excludesfile = ~/.gitignore_global
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [init]
-	# Set default branch
-	defaultBranch = main
-
-[fetch]
-	# Set prune behavior
-	prune = true
-	
-	# Set prune tags
-	pruneTags = true
-
-[rebase]
-	# Set auto stash
-	autoStash = true
-	
-	# Set auto squash
-	autoSquash = true
-
-[rerere]
-	# Enable rerere
-	enabled = true
-	
-	# Set auto update
-	autoUpdate = true
-
-[help]
-	# Set help format
-	format = man
-
-[advice]
-	# Disable push update
-	pushUpdateRejected = false
-	
-	# Disable push non fast forward
-	pushNonFastForward = false
-	
-	# Disable status hints
-	statusHints = false
-	
-	# Disable status untracked files
-	statusUntrackedFiles = false
+    defaultBranch = main
 
 [color]
-	# Set color for different outputs
-	branch = auto
-	diff = auto
-	status = auto
-	ui = auto
-	
-	# Set color for specific commands
-	[color "branch"]
-		current = yellow reverse
-		local = green
-		remote = red
-	
-	[color "diff"]
-		meta = yellow bold
-		frag = magenta bold
-		old = red bold
-		new = green bold
-	
-	[color "status"]
-		added = yellow
-		changed = green
-		untracked = cyan
+    ui = auto
 
-[filter]
-	# Set lfs filter
-	[filter "lfs"]
-		clean = git-lfs clean -- %f
-		smudge = git-lfs smudge -- %f
-		process = git-lfs filter-process
-		required = true
+[push]
+    default = simple
+    autoSetupRemote = true
 
-[include]
-	# Include local configuration if it exists
-	path = ~/.gitconfig.local
+[pull]
+    rebase = false
+
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+
+[diff]
+    tool = vimdiff
+    colorMoved = zebra
+    algorithm = patience
+
+[status]
+    showUntrackedFiles = all
+    submoduleSummary = true
+
+[log]
+    oneline = true
+    graph = true
+    decorate = short
+
+[alias]
+    # Basic aliases
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+    df = diff
+    lg = log --oneline --graph --decorate --all
+    last = log -1 HEAD
+    visual = !gitk
+    
+    # Status aliases
+    s = status --short --branch
+    ss = status --short
+    
+    # Commit aliases
+    cm = commit -m
+    ca = commit -a
+    cam = commit -am
+    amend = commit --amend
+    
+    # Branch aliases
+    b = branch
+    ba = branch -a
+    bd = branch -d
+    bD = branch -D
+    bm = branch -m
+    br = branch -r
+    
+    # Checkout aliases
+    cob = checkout -b
+    com = checkout main
+    cod = checkout develop
+    
+    # Merge aliases
+    m = merge
+    mn = merge --no-ff
+    ms = merge --squash
+    
+    # Rebase aliases
+    rb = rebase
+    ri = rebase -i
+    rc = rebase --continue
+    ra = rebase --abort
+    rs = rebase --skip
+    
+    # Stash aliases
+    sa = stash apply
+    sc = stash clear
+    sd = stash drop
+    sl = stash list
+    sp = stash pop
+    sts = stash save
+    sw = stash show
+    
+    # Remote aliases
+    rem = remote
+    ra = remote add
+    rr = remote remove
+    rv = remote -v
+    ru = remote update
+    rp = remote prune
+    
+    # Fetch aliases
+    f = fetch
+    fa = fetch --all
+    fp = fetch --prune
+    
+    # Pull aliases
+    p = pull
+    pr = pull --rebase
+    pt = pull --tags
+    
+    # Push aliases
+    pu = push
+    pum = push origin main
+    pud = push origin develop
+    put = push --tags
+    puu = push -u origin HEAD
+    
+    # Log aliases
+    l = log --oneline
+    ll = log --oneline --graph --decorate --all
+    lf = log --follow
+    lp = log --patch
+    ls = log --stat
+    l1 = log -1
+    l5 = log -5
+    l10 = log -10
+    
+    # Show aliases
+    sh = show
+    shs = show --stat
+    shp = show --patch
+    
+    # Diff aliases
+    d = diff
+    dc = diff --cached
+    dh = diff HEAD
+    d1 = diff HEAD~1
+    d2 = diff HEAD~2
+    d3 = diff HEAD~3
+    
+    # Reset aliases
+    rst = reset
+    rh = reset --hard
+    rsoft = reset --soft
+    rm = reset --mixed
+    
+    # Clean aliases
+    cl = clean
+    clf = clean -f
+    clfd = clean -f -d
+    cln = clean -n
+    
+    # Tag aliases
+    t = tag
+    ta = tag -a
+    td = tag -d
+    tl = tag -l
+    
+    # Submodule aliases
+    sm = submodule
+    sma = submodule add
+    smu = submodule update
+    smi = submodule init
+    
+    # Worktree aliases
+    wt = worktree
+    wta = worktree add
+    wtr = worktree remove
+    wtl = worktree list
+    
+    # Blame aliases
+    blame = blame -w
+    
+    # Grep aliases
+    grep = grep -n
+    
+    # Config aliases
+    config = config --list
+    configg = config --global
+    configl = config --local
+    
+    # Help aliases
+    help = help --all
+    
+    # Version aliases
+    version = --version
+    
+    # Custom DevOps aliases
+    dev = !git checkout develop
+    feat = !git checkout -b feature/
+    hotfix = !git checkout -b hotfix/
+    release = !git checkout -b release/
+    
+    # Conventional commit aliases
+    featc = !git commit -m "feat: "
+    fixc = !git commit -m "fix: "
+    docsc = !git commit -m "docs: "
+    stylec = !git commit -m "style: "
+    refactorc = !git commit -m "refactor: "
+    testc = !git commit -m "test: "
+    chorec = !git commit -m "chore: "
+    
+    # Quick workflow aliases
+    quickc = !git add . && git commit -m
+    savew = !git add . && git commit -m "WIP: $(date)"
+    undoc = !git reset HEAD~1
+    unstagef = !git reset HEAD --
+    
+    # Branch management aliases
+    cleanupb = !git branch --merged | grep -v '\\*\\|main\\|develop' | xargs -n 1 git branch -d
+    pruner = !git remote prune origin
+    
+    # History aliases
+    graphh = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    treeh = log --graph --oneline --all
+    
+    # File operations
+    uncommits = reset --soft HEAD~1
+    recommits = commit -c ORIG_HEAD
+    
+    # Stash operations
+    pops = stash pop
+    applys = stash apply
+    drops = stash drop
+    
+    # Remote operations
+    syncs = !git fetch && git rebase origin/$(git branch --show-current)
+    publishs = !git push -u origin $(git branch --show-current)

@@ -23,6 +23,45 @@ tools/
 └── README.md               # This file
 ```
 
+## Available Aliases
+
+This tools directory provides comprehensive aliases for all major DevOps tools:
+
+### Docker Aliases
+- `d` - docker (docker command)
+- `dc` - docker-compose (docker-compose command)
+- `dps` - docker ps (list running containers)
+- `dpsa` - docker ps -a (list all containers)
+- `di` - docker images (list images)
+- `dex` - docker exec -it (execute in container)
+- `dlog` - docker logs (show container logs)
+- `dstop` - docker stop (stop container)
+- `drm` - docker rm (remove container)
+- `drmi` - docker rmi (remove image)
+
+### Kubernetes Aliases
+- `k` - kubectl (kubectl command)
+- `kgp` - kubectl get pods (list pods)
+- `kgs` - kubectl get services (list services)
+- `kgd` - kubectl get deployments (list deployments)
+- `kgn` - kubectl get nodes (list nodes)
+- `kdp` - kubectl describe pod (describe pod)
+- `kds` - kubectl describe service (describe service)
+- `kdd` - kubectl describe deployment (describe deployment)
+- `klog` - kubectl logs (show pod logs)
+- `kex` - kubectl exec -it (execute in pod)
+
+### Terraform Aliases
+- `tf` - terraform (terraform command)
+- `tfi` - terraform init (initialize terraform)
+- `tfp` - terraform plan (plan changes)
+- `tfa` - terraform apply (apply changes)
+- `tfd` - terraform destroy (destroy infrastructure)
+- `tfo` - terraform output (show outputs)
+- `tfs` - terraform show (show state)
+
+> **Note**: These aliases are automatically available after running `./install.sh tools` or sourcing the individual alias files.
+
 ## Docker
 
 ### docker-compose.yml

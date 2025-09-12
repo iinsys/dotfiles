@@ -31,6 +31,11 @@ make install
 # OR
 ./install.sh
 
+# Interactive mode (recommended for first-time users)
+make install-interactive
+# OR
+./install.sh -i
+
 # Install specific categories
 make install-shell    # Shell configurations only
 make install-editors  # Editor configurations only
@@ -54,6 +59,9 @@ chmod +x install.sh
 
 # Install everything
 ./install.sh
+
+# Interactive mode (recommended for first-time users)
+./install.sh -i
 
 # Install specific categories
 ./install.sh shell
@@ -87,6 +95,19 @@ cp git/.gitignore_global ~/.gitignore_global
 cp editors/.vimrc ~/.vimrc
 cp editors/.nanorc ~/.nanorc
 ```
+
+### Interactive Installation Mode
+
+For first-time users or those who want to customize their installation, use the interactive mode:
+
+```bash
+./install.sh -i
+```
+
+This will guide you through selecting which components to install with prompts like:
+- "Install all shell configurations? (y/N)"
+- "Install Git configurations? (y/N)"
+- "Install Docker configurations only? (y/N)"
 
 ### Post-Installation
 Restart your shell or run:
@@ -123,6 +144,47 @@ source ~/.bashrc  # or ~/.zshrc
 - **tmux**: Terminal multiplexer with advanced navigation and session management
 - **ctags**: Code navigation and indexing for multiple programming languages
 - **AWS CLI**: Profile management, common operations, and best practices
+
+## 🚀 Available Aliases
+
+This dotfiles collection includes **100+ productivity aliases** across all major DevOps tools:
+
+### Git Aliases
+- `gs` - git status (show repository status)
+- `ga` - git add (stage files)
+- `gc` - git commit (commit changes)
+- `gp` - git push (push to remote)
+- `gl` - git log --oneline (show commit history)
+- `gd` - git diff (show changes)
+- `gb` - git branch (list branches)
+- `gco` - git checkout (switch branches)
+- `gpl` - git pull (pull from remote)
+
+### Docker Aliases
+- `d` - docker (docker command)
+- `dc` - docker-compose (docker-compose command)
+- `dps` - docker ps (list running containers)
+- `dpsa` - docker ps -a (list all containers)
+- `di` - docker images (list images)
+- `dex` - docker exec -it (execute in container)
+- `dlog` - docker logs (show container logs)
+
+### Kubernetes Aliases
+- `k` - kubectl (kubectl command)
+- `kgp` - kubectl get pods (list pods)
+- `kgs` - kubectl get services (list services)
+- `kgd` - kubectl get deployments (list deployments)
+- `kgn` - kubectl get nodes (list nodes)
+- `klog` - kubectl logs (show pod logs)
+
+### Terraform Aliases
+- `tf` - terraform (terraform command)
+- `tfi` - terraform init (initialize terraform)
+- `tfp` - terraform plan (plan changes)
+- `tfa` - terraform apply (apply changes)
+- `tfd` - terraform destroy (destroy infrastructure)
+
+> **Note**: Run `alias` in your terminal to see all available aliases after installation.
 
 ## 🔧 Customization
 
@@ -240,4 +302,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Note**: This repository is designed to be practical and not overly complex. If you find any configuration too complicated or unnecessary, feel free to customize or remove it. The goal is to make DevOps work more efficient, not to add complexity.
+**Not⚠️e**: This repository is designed to be practical and not overly complex. If you find any configuration too complicated or unnecessary, feel free to customize or remove it. The goal is to make DevOps work more efficient, not to add complexity and also not that it is still in progress and we are still testing the environments so if you find any bug please create a ticket.

@@ -23,7 +23,7 @@ help: ## Show this help message
 	@echo "$(BLUE)====================================$(NC)"
 	@echo ""
 	@echo "$(CYAN)Installation:$(NC)"
-	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  $(GREEN)%-20s$(NC) %s\n", $$1, $$2}' $(MAKEFILE_LIST) | grep -E "(install|setup)"
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  $(GREEN)%-20s$(NC) %s\n", $$1, $$2}' $(MAKEFILE_LIST) | grep -E "(install|setup)" | head -5
 	@echo ""
 	@echo "$(CYAN)Individual Components:$(NC)"
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  $(GREEN)%-20s$(NC) %s\n", $$1, $$2}' $(MAKEFILE_LIST) | grep -E "(shell|editor|git|tools|bash|zsh|profile|vim|nano|vscode|docker|kubernetes|terraform|tmux|ctags)"
@@ -44,6 +44,12 @@ install: ## Install all dotfiles configurations
 	@echo "$(BLUE)🚀 Installing DevOps Dotfiles...$(NC)"
 	@chmod +x install.sh
 	@./install.sh
+
+.PHONY: install-interactive
+install-interactive: ## Install dotfiles with interactive selection
+	@echo "$(BLUE)🚀 Installing DevOps Dotfiles (Interactive Mode)...$(NC)"
+	@chmod +x install.sh
+	@./install.sh -i
 
 .PHONY: install-shell
 install-shell: ## Install only shell configurations
