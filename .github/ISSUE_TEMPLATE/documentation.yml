@@ -1,0 +1,97 @@
+name: Documentation Issue
+description: Report documentation problems or suggest improvements
+title: "[DOCS]: "
+labels: ["documentation", "needs-triage"]
+assignees: ["bansikah22"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve our documentation! Please provide details about the documentation issue or improvement.
+
+  - type: dropdown
+    id: doc-type
+    attributes:
+      label: Documentation Type
+      description: What type of documentation is affected?
+      options:
+        - README.md
+        - Component README (shell/editors/git/tools)
+        - Installation Guide
+        - Makefile Documentation
+        - GitHub Pages Documentation
+        - Code Comments
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue Type
+      description: What type of documentation issue is this?
+      options:
+        - Typo or grammar error
+        - Missing information
+        - Outdated information
+        - Unclear or confusing
+        - Missing examples
+        - Broken links
+        - Formatting issue
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the documentation issue or improvement
+      placeholder: Describe what needs to be fixed or improved...
+    validations:
+      required: true
+
+  - type: textarea
+    id: location
+    attributes:
+      label: Location
+      description: Where is this documentation issue located?
+      placeholder: |
+        - File path: 
+        - Section: 
+        - Line number (if applicable): 
+        - URL (if applicable): 
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current Content
+      description: What does the current documentation say?
+      placeholder: Paste the current content that needs to be changed...
+      render: markdown
+
+  - type: textarea
+    id: suggested
+    attributes:
+      label: Suggested Improvement
+      description: What should the documentation say instead?
+      placeholder: Describe or paste the improved content...
+      render: markdown
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: How does this affect users?
+      placeholder: Describe how this documentation issue affects users...
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

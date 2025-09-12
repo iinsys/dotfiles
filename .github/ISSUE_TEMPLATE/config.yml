@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: GitHub Discussions
+    url: https://github.com/iinsys/dotfiles/discussions
+    about: Ask questions, share ideas, or get help from the community
+  - name: Documentation
+    url: https://iinsys.github.io/dotfiles/
+    about: Check our comprehensive documentation for setup guides and usage examples
